@@ -1,0 +1,23 @@
+主机扫描主要功能：
+	显示在线的学生端；首先就要探测主机是否为活动状态，
+然后就是对通信端口进行扫描，目的是要确认指定的服务是否处于工作状态。
+用基于TCP协议的全连接扫描。连接由系统调用connect()开始。对于每一个监听端口，
+connect()会获得成功，否则返回-1，表示端口不可访问。
+
+
+tcp connect()
+static public string T3(String TestIP,int TestPort)
+{
+    TcpClient tc = new TcpClient();
+    try    
+    { 
+      tc.Connect(IPAddress.Parse(TestIP), TestPort);
+      tc.close(); 
+      return "端口开放";    
+     }
+    catch(Exception)
+    { 
+        tc.close(); 
+        return "端口不开放"; 
+   }
+}
